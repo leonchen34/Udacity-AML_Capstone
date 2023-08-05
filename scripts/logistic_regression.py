@@ -2,12 +2,10 @@ from sklearn.linear_model import LogisticRegression
 import argparse
 import os
 import numpy as np
-#from sklearn.metrics import mean_squared_error
 import joblib
-#from sklearn.model_selection import train_test_split
-#from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 from azureml.core.run import Run
+from azureml.core.dataset import Dataset
 #from azureml.data.dataset_factory import TabularDatasetFactory
 
 def logisticReg():
@@ -35,10 +33,10 @@ def logisticReg():
     test_df = test_ds.to_pandas_dataframe()
 
     y_train = trainig_df['fraud']
-    x_train = training_df.drop(['fraud'], axis=1)
+    x_train = trainig_df.drop(['fraud'], axis=1)
     
     y_test = test_df['fraud']
-    x_test = df_test.drop(['fraud'], axis=1)
+    x_test = test_df.drop(['fraud'], axis=1)
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
     #model = LogisticRegression(C=args.C, solver="liblinear").fit(x_train, y_train)
@@ -50,7 +48,7 @@ def logisticReg():
 
     # save the model
     os.makedirs('outputs',exist_ok=True)
-    joblib.dump(value=model, filename='outputs/model.pkl)
+    joblib.dump(value=model, filename='outputs/model.pkl')
 
     run.complete()
 
