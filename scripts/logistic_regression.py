@@ -14,6 +14,8 @@ def logisticReg():
 
     parser.add_argument('--C', type=float, default=1.0, help="Inverse of regularization strength. Smaller values cause stronger regularization")
     parser.add_argument('--max_iter', type=int, default=100, help="Maximum number of iterations to converge")
+    parser.add_argument('--penalty', default="l2", help="penalty term")
+    parser.add_argument('--solver', default="lbfgs", help="optimization algorithm")
 
     args = parser.parse_args()
 
@@ -34,12 +36,11 @@ def logisticReg():
 
     y_train = trainig_df['fraud']
     x_train = trainig_df.drop(['fraud'], axis=1)
-    
     y_test = test_df['fraud']
     x_test = test_df.drop(['fraud'], axis=1)
 
-    model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
-    #model = LogisticRegression(C=args.C, solver="liblinear").fit(x_train, y_train)
+    model = LogisticRegression(C=args.C, max_iter=args.max_iter,  
+            penalty=args.penalty, solver=args.solver).fit(x_train,y_train)
     
     accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(accuracy))
@@ -47,8 +48,8 @@ def logisticReg():
     # accuracy = np.average(y_pred == y_test)
 
     # save the model
-    os.makedirs('outputs',exist_ok=True)
-    joblib.dump(value=model, filename='outputs/model.pkl')
+    os.makedirs('outputs/model',exist_ok=True)
+    joblib.dump(value=model, filename='outputs/model/model.pkl')
 
     run.complete()
 
