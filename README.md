@@ -6,26 +6,22 @@ In this project, two models will be created, one using Azure Automated ML (AutoM
 ## Project Set Up and Installation
 
 You can download the project from github with the following link:
+
 https://github.com/leonchen34/Udacity-AML_Capstone.git.
 
-
-To setup the project in AzureML, upload downloaded directory into studio notebook. 
 To set up the project in AzureML, follow these steps to upload the downloaded directory into the Azure Machine Learning Studio Notebook environment. This assumes that you already have an AzureML workspace created.
 
-(1)  Access Azure Machine Learning Studio:
+(1) Access Azure Machine Learning Studio:
 
-Go to the Azure portal (https://portal.azure.com).
-Navigate to your Azure Machine Learning workspace.
+- Go to the Azure portal (https://portal.azure.com).
+- Navigate to your Azure Machine Learning workspace.
 
 (2) Upload Project Directory:
 
-In the left-hand menu of your AzureML workspace, click on "Notebooks".
-
-Inside the Notebooks section, you'll see a "+" button to create a new folder. Click on it and give your project a name.
-
-Click on the newly created folder to open it.
-
-Inside the project folder, you'll see another "+" button, click on it to upload your downloaded directory.
+- In the left-hand menu of your AzureML workspace, click on "Notebooks".
+- Inside the Notebooks section, you'll see a "+" button to create a new folder. Click on it and give your project a name.
+- Click on the newly created folder to open it.
+- Inside the project folder, you'll see another "+" button, click on it to upload your downloaded directory.
 
 There are three notebook files in this project. 
 
@@ -66,21 +62,14 @@ Similarly, the getTestDataset() function employs a similar logic. If the "airbnb
 
 The following settings and configurations are utilized for the AutoML process:
 
-iteration_timeout_minutes: This parameter sets the time limit in minutes for each iteration. It's advisable to increase this value for larger datasets that necessitate more time per iteration. In this case, we've allocated 10 minutes per iteration, as the dataset is relatively small.
-
-experiment_timeout_minutes: This setting defines the maximum cumulative time that all iterations are allowed to take before the experiment is terminated. Here, it's set to 30 minutes, which aligns with the dataset's smaller scale.
-
-enable_early_stopping: By enabling this flag, early termination is initiated if the model's performance doesn't display improvements within a short duration.
-
-primary_metric: Given the dataset's significant class imbalance, "AUC_weighted" is selected as the primary metric. This metric is suitable for imbalanced data scenarios.
-
-featurization: The "auto" option is chosen to permit the experiment to preprocess the input data. This involves tasks such as handling missing data and converting text to numeric representations.
-
-verbosity: This parameter regulates the level of logging information generated during the AutoML process.
-
-n_cross_validation: As validation data isn't explicitly provided, the value for this parameter specifies the number of cross-validations to perform.
-
-enable_onnx_compatible_models: This setting is enabled to ensure that, upon completion of the training process, an ONNX model will be retrieved as the result.
+- iteration_timeout_minutes: This parameter sets the time limit in minutes for each iteration. It's advisable to increase this value for larger datasets that necessitate more time per iteration. In this case, we've allocated 10 minutes per iteration, as the dataset is relatively small.
+- experiment_timeout_minutes: This setting defines the maximum cumulative time that all iterations are allowed to take before the experiment is terminated. Here, it's set to 30 minutes, which aligns with the dataset's smaller scale.
+- enable_early_stopping: By enabling this flag, early termination is initiated if the model's performance doesn't display improvements within a short duration.
+- primary_metric: Given the dataset's significant class imbalance, "AUC_weighted" is selected as the primary metric. This metric is suitable for imbalanced data scenarios.
+- featurization: The "auto" option is chosen to permit the experiment to preprocess the input data. This involves tasks such as handling missing data and converting text to numeric representations.
+- verbosity: This parameter regulates the level of logging information generated during the AutoML process.
+- n_cross_validation: As validation data isn't explicitly provided, the value for this parameter specifies the number of cross-validations to perform.
+- enable_onnx_compatible_models: This setting is enabled to ensure that, upon completion of the training process, an ONNX model will be retrieved as the result.
 
 ### Results
 
@@ -92,7 +81,7 @@ The best model is the one with algorithm  "StandardScaleWrapper, RandomForest":
 
 ![Automl Best model](screenshots/Automl-run-3.png)
 
-The best Model Metrics with accuracy 0.933:
+The best Model Metrics has accuracy of 0.933:
 
 ![Automl Best model metrics](screenshots/Automl-bestrun-metrics.png)
 
