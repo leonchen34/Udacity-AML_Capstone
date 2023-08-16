@@ -56,7 +56,7 @@ A notebook file named "data_process.ipyng" was created to perform some pre-proce
 
 Inside the "scripts" directory, you will find the script named data_set.py. This script contains two functions, namely getTrainingDataset() and getTestDataset(). These functions serve the purpose of registering the data files "train.csv" and "test.csv" as datasets within the Azure Machine Learning workspace. These datasets are named "airbnb_boston_training" and "airbnb_boston_test" respectively.
 
-![Registered data set](<sceenshots/Registered dataset.png>)
+![Registered data set](<screenshots/Registered dataset.png>)
 
 The getTrainingDataset() function operates in a way that if the "airbnb_boston_training" dataset is already registered, it returns this dataset. However, if the dataset is not registered, the function loads and registers the training data from the "train.csv" file. This procedure results in the creation of the "airbnb_boston_training" dataset.
 
@@ -86,19 +86,19 @@ enable_onnx_compatible_models: This setting is enabled to ensure that, upon comp
 
 RunDetails output:
 
-![Automl RunDetail](sceenshots/Automl-Reundetail-1.png)
+![Automl RunDetail](screenshots/Automl-Reundetail-1.png)
 
 The best model is the one with algorithm  "StandardScaleWrapper, RandomForest":
 
-![Automl Best model](sceenshots/Automl-run-3.png)
+![Automl Best model](screenshots/Automl-run-3.png)
 
 The best Model Metrics with accuracy 0.933:
 
-![Automl Best model metrics](sceenshots/Automl-bestrun-metrics.png)
+![Automl Best model metrics](screenshots/Automl-bestrun-metrics.png)
 
 Given the parameter configuration with enable_onnx_compatible_models set to true in the AutoML settings, the outcome is the retrieval of an ONNX-compatible model.
 
-![Automl onnx](sceenshots/Automl-onnx-1.png)
+![Automl onnx](screenshots/Automl-onnx-1.png)
 
 ## Hyperparameter Tuning
 
@@ -112,36 +112,36 @@ To ensure optimal resource utilization, an early termination policy is employed.
 
 Rundetails:
 
-![Hyperdrive Rundetail](sceenshots/Hyperdrive-Rundetail-1.png)
+![Hyperdrive Rundetail](screenshots/Hyperdrive-Rundetail-1.png)
 
 Run Error:
 
 During the parameter tuning process, it's important to note that certain runs might result in errors due to incompatible parameter combinations. Specifically, such issues may arise when employing the newton-cholesky solver in conjunction with the L1 penalty term. 
 
-![Hyperdrive tuning error](sceenshots/Hyperdrivev-Run-error.png)
+![Hyperdrive tuning error](screenshots/Hyperdrivev-Run-error.png)
 
 Best run has accuracy of 0.845:
 
-![Hyperdrive best run](sceenshots/Hyperdrive-bestrun.png)
+![Hyperdrive best run](screenshots/Hyperdrive-bestrun.png)
 
 Model with best tunned parameters:
 
-![Hyperdrive best model](sceenshots/Hyperdrive-bestmodel.png)
+![Hyperdrive best model](screenshots/Hyperdrive-bestmodel.png)
 
 ## Model Deployment
 
 ### Registered Models
 The Best models for AutoML and Hyperparameter tunning are registered as follows:
 
-![Automl registered model](sceenshots/Automl-registered-model.png)
+![Automl registered model](screenshots/Automl-registered-model.png)
 
-![Hyperdrive registered model](sceenshots/Hyperdrive-registered-model.png)
+![Hyperdrive registered model](screenshots/Hyperdrive-registered-model.png)
 
 ### Deployed endpoint
 
 Since the best AutoML model has higher accuracy, it is deployed as AciWebservice. The following is the deployed endpoint:
 
-![Automl endpoint](sceenshots/Automl-endpoint-1.png)
+![Automl endpoint](screenshots/Automl-endpoint-1.png)
 
 ### Endpoint query
 
